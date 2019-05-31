@@ -1,30 +1,46 @@
 package com.project.springbootstartup.service;
 
 import com.project.springbootstartup.model.CourseModel;
+import com.project.springbootstartup.repo.CourseRepo;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CourseService {
 
-    public List<CourseModel> createCourses(){
-        return null;
-    }
+	@Autowired
+	private CourseRepo courseRepo;
     public List<CourseModel> getAllCourses(){
-
-        return null;
-      /*  return CourseModel cm1 = new CourseModel("1","Computer","Learn Computer");
-        CourseModel cm2 = new CourseModel("2","Java","Spring Boot");
-
-        List<CourseModel> allCourse = new ArrayList<>();
-        allCourse.add(cm1);
-        allCourse.add(cm2);;*/
-    }
+    	List<CourseModel> courses = new ArrayList<>();
+    	courseRepo.findAll().forEach(courses::add);
+    	
+		
+		return courses;
+	}
 
     public CourseModel getCourse() {
         return null;
     }
     // Your Course Service Goes here
+	public CourseModel getCourse(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void addCourse(CourseModel course) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void updateCourse(String id, CourseModel course) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void deleteCourse(String id) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
