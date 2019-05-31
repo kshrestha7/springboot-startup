@@ -12,35 +12,30 @@ import java.util.List;
 @Service
 public class CourseService {
 
-	@Autowired
-	private CourseRepo courseRepo;
-    public List<CourseModel> getAllCourses(){
-    	List<CourseModel> courses = new ArrayList<>();
-    	courseRepo.findAll().forEach(courses::add);
-    	
-		
-		return courses;
-	}
+    @Autowired
+    private CourseRepo courseRepo;
 
-    public CourseModel getCourse() {
-        return null;
+    public List<CourseModel> getAllCourses() {
+        return courseRepo.getAllCourse();
+
     }
-    // Your Course Service Goes here
-	public CourseModel getCourse(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void addCourse(CourseModel course) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void updateCourse(String id, CourseModel course) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void deleteCourse(String id) {
-		// TODO Auto-generated method stub
-		
-	}
+
+    public CourseModel getCourse(String id) {
+        return courseRepo.getCourseById(id);
+    }
+
+    public void addCourse(CourseModel course) {
+        courseRepo.addCourse(course);
+    }
+
+    public void updateCourse(String id, CourseModel course) {
+        courseRepo.updateCourse(id,course);
+
+    }
+
+    public void deleteCourse(String id) {
+         courseRepo.deleteCourse(id);
+
+    }
 
 }
