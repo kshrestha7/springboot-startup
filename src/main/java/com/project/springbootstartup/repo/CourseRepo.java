@@ -18,7 +18,6 @@ public class CourseRepo {
             new CourseModel("10", "MYSQL", "Learn MYSQL")));
 
     public List<CourseModel> getAllCourse() {
-
         return courses;
     }
 
@@ -28,7 +27,6 @@ public class CourseRepo {
     }
 
     public void addCourse(CourseModel courseModel) {
-        courses.add(courseModel);
     }
 
     public void deleteCourse(String id) {
