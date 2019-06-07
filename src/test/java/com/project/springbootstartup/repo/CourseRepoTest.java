@@ -20,8 +20,8 @@ public class CourseRepoTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
-        // courseRepo = org.mockito.Mockito.mock(CourseRepo.class);
+        MockitoAnnotations.initMocks(this); //initialization
+        // courseRepo = org.mockito.Mockito.mock(CourseRepo.class); //initialization another way
         when(courseRepo.getAllCourse()).thenReturn(getCourse());
     }
 
@@ -31,9 +31,24 @@ public class CourseRepoTest {
         verify(courseRepo, times(1)).getAllCourse();
     }
 
+    @Test(expected = NullPointerException.class)
+    public void getCourseByWrongID() {
+        when(courseRepo.getCourseById("50")).thenReturn(getCourseByIdMock());
+        assertEquals(courseRepo.getCourseById("51").getCourseDescription(), "Spring Boot");
+        verify(courseRepo, times(1)).getCourseById(anyString());
+
+
+    }
+
+
     @Test
     public void getCourseById() {
-        // TODO add test case for couseById
+
+        when(courseRepo.getCourseById("50")).thenReturn(getCourseByIdMock());
+        assertEquals(courseRepo.getCourseById("50").getCourseDescription(), "Spring Boot");
+        verify(courseRepo, times(1)).getCourseById(anyString());
+
+
     }
 
     @Test
@@ -52,16 +67,22 @@ public class CourseRepoTest {
     }
     // you may need to create a several test method
 
-    public List<CourseModel> getCourse() {
-        List<CourseModel> courses = new ArrayList<>(Arrays.asList(new CourseModel("1", "Computer", "Learn Computer"),
-                new CourseModel("2", "Java", "Spring Boot"), new CourseModel("3", "Angular", "Angular2"),
-                new CourseModel("4", "Servlet", "Learn Servlet"), new CourseModel("5", "JSP", "Learn JSP"),
-                new CourseModel("6", "Hibernate", "Learn Hibernate"), new CourseModel("7", "HTML", "Learn HTML"),
-                new CourseModel("8", "CSS", "Learn CSS"), new CourseModel("9", "SQL", "Learn SQL"),
-                new CourseModel("10", "MYSQL", "Learn MYSQL")));
+    //mocking object
+    private List<CourseModel> getCourse() {
+        List<CourseModel> courses = new ArrayList<>(Arrays.asList(new CourseModel("11", "Computer", "Learn Computer"),
+                new CourseModel("12", "Java", "Spring Boot"), new CourseModel("13", "Angular", "Angular2"),
+                new CourseModel("14", "Servlet", "Learn Servlet"), new CourseModel("15", "JSP", "Learn JSP"),
+                new CourseModel("16", "Hibernate", "Learn Hibernate"), new CourseModel("17", "HTML", "Learn HTML"),
+                new CourseModel("18", "CSS", "Learn CSS"), new CourseModel("19", "SQL", "Learn SQL"),
+                new CourseModel("20", "MYSQL", "Learn MYSQL")));
 
 
         return courses;
+    }
+
+    private CourseModel getCourseByIdMock(){
+        CourseModel cm = new CourseModel("50", "Java", "Spring Boot");
+        return cm;
     }
     // you may need to create a several method
 }
