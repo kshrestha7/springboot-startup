@@ -32,9 +32,17 @@ public class CourseRepo {
     }
 
     public void deleteCourse(String id) {
+        courses.removeIf(t->t.getCourseId().equals(id));
     }
 
     public void updateCourse(String id, CourseModel course) {
+          for(int i =0; i<courses.size();i++){
+            CourseModel courseModel = courses.get(i);
+            if(courseModel.getCourseId().equals(id)){
+                courses.set(i, course);
+                break;
+            }
+        }
 
     }
 }
