@@ -6,8 +6,8 @@ import com.project.springbootstartup.repo.CourseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 @Service
 public class CourseService {
@@ -15,26 +15,36 @@ public class CourseService {
     @Autowired
     private CourseRepo courseRepo;
 
+
     public List<CourseModel> getAllCourses() {
-        return courseRepo.getAllCourse();
+
+        return courseRepo.findAll();
 
     }
 
-    public CourseModel getCourse(String id) {
-        return courseRepo.getCourseById(id);
+    public Optional<CourseModel> getCourse(String id) {
+
+        return courseRepo.findById(id);
+
+
     }
 
     public void addCourse(CourseModel course) {
-        courseRepo.addCourse(course);
+
+        courseRepo.save(course);
     }
 
-    public void updateCourse(String id, CourseModel course) {
-        courseRepo.updateCourse(id,course);
+    public void updateCourse(CourseModel course) {
+
+        if(courseRepo.existsById(course.getCourseId())) {
+            courseRepo.save(course);
+        }
 
     }
 
     public void deleteCourse(String id) {
-         courseRepo.deleteCourse(id);
+
+        courseRepo.deleteById(id);
 
     }
 

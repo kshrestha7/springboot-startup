@@ -1,8 +1,11 @@
 package com.project.springbootstartup.model;
 
+import org.springframework.data.annotation.Id;
+
 public class CourseModel {
     // your course model goes here
 
+    @Id
     private String courseId;
     private String courseName;
     private String courseDescription;

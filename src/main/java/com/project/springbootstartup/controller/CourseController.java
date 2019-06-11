@@ -1,6 +1,7 @@
 package com.project.springbootstartup.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ public class CourseController {
 	
 
 	@RequestMapping("/course/{id}")
-	public CourseModel getCourse(@PathVariable String id) {
+	public Optional<CourseModel> getCourse(@PathVariable String id) {
 		return courseService.getCourse(id);
 
 	}
@@ -39,8 +40,8 @@ public class CourseController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/course/{id}")
-	public void updateCourse(@RequestBody CourseModel course, @PathVariable String id) {
-		courseService.updateCourse(id, course);
+	public void updateCourse(@RequestBody CourseModel course) {
+		courseService.updateCourse(course);
 
 	}
 
