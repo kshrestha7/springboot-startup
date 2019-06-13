@@ -11,7 +11,6 @@ public class CourseModel {
 
 
     @Id
-    @GeneratedValue
     @Column(name="COURSE_ID")
     private String courseId;
     @Column(name="COURSE_NAME")
@@ -19,13 +18,15 @@ public class CourseModel {
     @Column(name="COURSE_DESCRIPTION")
     private String courseDescription;
 
-    public CourseModel(){
 
-    }
     public CourseModel(String courseId, String courseName, String courseDescription) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
+    }
+
+    public CourseModel() {
+
     }
 
     public String getCourseId() {

@@ -1,0 +1,6 @@
+in memory databse login
+url: http://localhost:8181/h2-console
+
+JDBC url: jdbc:h2:mem:testdb
+username:  sa
+password : leave empty
