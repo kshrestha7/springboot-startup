@@ -1,15 +1,27 @@
 package com.project.springbootstartup.model;
 
-import org.springframework.data.annotation.Id;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="COURSE")
 public class CourseModel {
     // your course model goes here
 
+
     @Id
+    @GeneratedValue
+    @Column(name="COURSE_ID")
     private String courseId;
+    @Column(name="COURSE_NAME")
     private String courseName;
+    @Column(name="COURSE_DESCRIPTION")
     private String courseDescription;
 
+    public CourseModel(){
+
+    }
     public CourseModel(String courseId, String courseName, String courseDescription) {
         this.courseId = courseId;
         this.courseName = courseName;

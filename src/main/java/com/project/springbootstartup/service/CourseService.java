@@ -18,7 +18,9 @@ public class CourseService {
 
     public List<CourseModel> getAllCourses() {
 
-        return courseRepo.findAll();
+        List<CourseModel> courseModel = new ArrayList<>();
+        courseRepo.findAll().forEach(courseModel::add);
+        return courseModel;
 
     }
 
