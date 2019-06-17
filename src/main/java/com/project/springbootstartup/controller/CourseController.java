@@ -24,7 +24,7 @@ public class CourseController {
 	
 
 	@GetMapping("/course/{id}")
-	public Optional<CourseModel> getCourse(@PathVariable String id) {
+	public Optional<CourseModel> getCourse(@PathVariable int id) {
 		return courseService.getCourse(id);
 
 	}
@@ -35,15 +35,15 @@ public class CourseController {
 
 	}
 
-	@PutMapping("/course/{id}")
+/*	@PutMapping("/course/{id}")
 	public void updateCourse(@RequestBody CourseModel course) {
 		courseService.updateCourse(course);
 
 	}
 
 	@DeleteMapping("/course/{id}")
-	public void deleteCourse(@PathVariable String id) {
+	public void deleteCourse(@PathVariable int id) {
 		courseService.deleteCourse(id);
 
-	}
+	}*/
 }

@@ -24,7 +24,7 @@ public class CourseService {
 
     }
 
-    public Optional<CourseModel> getCourse(String id) {
+    public Optional<CourseModel> getCourse(int id) {
 
         return courseRepo.findById(id);
 
@@ -44,7 +44,7 @@ public class CourseService {
 
     }
 
-    public void deleteCourse(String id) {
+    public void deleteCourse(int id) {
 
         courseRepo.deleteById(id);
 
