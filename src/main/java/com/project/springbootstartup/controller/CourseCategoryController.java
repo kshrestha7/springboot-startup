@@ -6,6 +6,7 @@ import com.project.springbootstartup.service.CourseCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,31 +29,30 @@ public class CourseCategoryController {
 
     }*/
 
-    @GetMapping(value = "/updateCategory/{name}")
-    public List<CourseCategory> updtaeCategory(@PathVariable String name){
+    @PostMapping(value = "/addCourseCategory")
+    public List<CourseCategory> addCourseCategory(@RequestBody CourseCategory courseCategory) {
+        List<CourseModel> cm = new ArrayList<>();
+        if(courseCategory.getCourseModels().size() >0){
+            for (int i = 0; i < courseCategory.getCourseModels().size(); i++) {
+                CourseModel courseModel = new CourseModel();
+                courseModel.setCourseDescription(courseCategory.getCourseModels().get(i).getCourseDescription());
+                courseModel.setCourseName(courseCategory.getCourseModels().get(i).getCourseName());
+                cm.add(courseModel);
+            }
+        }
+        CourseCategory courseCategory1 = new CourseCategory();
+        courseCategory1.setName(courseCategory.getName());
+        courseCategory1.setCourseModels(cm);
 
-        CourseModel courseModel = new CourseModel();
-        courseModel.setCourseName("Computer Science")
-                .setCourseDescription("learnComputer");
 
-        CourseModel courseModel1 = new CourseModel();
-        courseModel1.setCourseName("System Architecture")
-                .setCourseDescription("Learn System Architecture");
-
-
-        CourseCategory courseCategory = new CourseCategory();
-        courseCategory.setName(name);
-        courseCategory.setCourseModels(Arrays.asList(courseModel,courseModel1));
 
         //Save Course Category
-        courseCategoryService.addCourseCategoty(courseCategory);
+        courseCategoryService.addCourseCategory(courseCategory1);
 
 
-        //Rerurn the the save item
+        //Return the the save item
 
         return courseCategoryService.getAllCourseCategory();
-
-
 
 
     }

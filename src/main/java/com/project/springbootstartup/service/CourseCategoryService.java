@@ -17,12 +17,11 @@ public class CourseCategoryService {
     public List<CourseCategory> getAllCourseCategory() {
 
         List<CourseCategory> courseCategories = new ArrayList<>();
-        courseCategoryRepo.findAll().forEach(courseCategories::add);
-        return courseCategories;
+        return courseCategoryRepo.findAll();//.forEach(courseCategories::add);
 
     }
 
-    public void addCourseCategoty(CourseCategory courseCategory) {
+    public void addCourseCategory(CourseCategory courseCategory) {
 
         courseCategoryRepo.save(courseCategory);
     }
